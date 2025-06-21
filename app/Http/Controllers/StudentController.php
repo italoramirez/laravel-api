@@ -30,6 +30,15 @@ class StudentController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function show(int $id): JsonResponse
+    {
+        $student = Student::findOrFail($id, ['id', 'name', 'lastname', 'age', 'document', 'course']);
+        return response()->json([
+            "status" => 200,
+            "data" => $student
+        ], Response::HTTP_OK);
+    }
+
     /**
      * @param StudentsRequest $request
      * @return JsonResponse
@@ -62,7 +71,11 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
         $payload = [
-            'name' => $request->name,
+            'name' => isset($request->name) ?  $request->name : $student->name,
+            'lastname' => isset($request->name) ?  $request->lastname : $student->lastname,
+            'age' => isset($request->age) ?  $request->age : $student->age,
+            'document' => isset($request->document) ?  $request->document : $student->document,
+            'course' => isset($request->course) ?  $request->course : $student->course,
         ];
 //        dd($student); // die dom
         $student->update($payload);

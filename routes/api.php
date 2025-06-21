@@ -30,6 +30,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['prefix' => 'students'], function () {
+        Route::get('/{id}', [StudentController::class, 'show']);
         Route::get('/', [StudentController::class, 'index']);
         Route::post('/', [StudentController::class, 'store']);
         Route::put('/{id}', [StudentController::class, 'update']);
