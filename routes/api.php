@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('/', [StudentController::class, 'store']);
         Route::put('/{id}', [StudentController::class, 'update']);
         Route::delete('/{id}', [StudentController::class, 'destroy']);
+        Route::get('/document-types', [StudentController::class, 'getDocumentTypes']);
     });
     Route::group( ['prefix' => 'cars'], function () {
         Route::get('/', [CarsController::class, 'index']);

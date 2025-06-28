@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\DocumentTypeEnum;
 use App\Http\Requests\StudentsRequest;
 use App\Models\Student;
 use Illuminate\Http\JsonResponse;
@@ -101,5 +102,16 @@ class StudentController extends Controller
         return response()->json([
             'message' => 'success',
         ], Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function getDocumentTypes(): JsonResponse
+    {
+        return response()->json([
+            'status' => 200,
+            'data' => DocumentTypeEnum::getDocumentType()
+        ], Response::HTTP_OK);
     }
 }
