@@ -4,11 +4,11 @@ namespace App\Enum;
 
 enum DocumentTypeEnum: string implements  EnumInterface
 {
-    case CC = 'CC';
-    case CE = 'CE';
-    case TI = 'TI';
+    case CC = 'CCE';
+    case CE = 'CEX';
+    case TI = 'TID';
     case NIT = 'NIT';
-    case PASSPORT = 'PASSPORT';
+    case PASSPORT = 'PAS';
 
     /**
      * @return string
@@ -23,12 +23,16 @@ enum DocumentTypeEnum: string implements  EnumInterface
             self::PASSPORT => 'Pasaporte'
         };
     }
+
+    /**
+     * @return array
+     */
     public static function getDocumentType(): array
     {
         $result = [];
         foreach (self::cases() as $index => $value) {
             $result[] = [
-                'id' => $index + 1,
+//                'id' => $index + 1,
                 'code' => $value->value,
                 'description' => $value->description()
             ];
