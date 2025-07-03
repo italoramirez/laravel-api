@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CarsController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::put('/{id}', [StudentController::class, 'update']);
         Route::delete('/{id}', [StudentController::class, 'destroy']);
         Route::get('/document-types', [StudentController::class, 'getDocumentTypes']);
+        Route::post('/images', [ImageController::class, 'store']);
+        Route::get('/images', [ImageController::class, 'index']);
     });
     Route::group( ['prefix' => 'cars'], function () {
         Route::get('/', [CarsController::class, 'index']);
